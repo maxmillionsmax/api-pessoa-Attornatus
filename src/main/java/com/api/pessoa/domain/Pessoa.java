@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Pessoa implements Serializable{
@@ -20,8 +21,8 @@ public class Pessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 	private String nome;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
@@ -34,18 +35,18 @@ public class Pessoa implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pessoa(Integer id, String nome, LocalDate dataNascimento) {
+	public Pessoa(int id, String nome, LocalDate dataNascimento) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
-
-	public void setId(Integer id) {
+	
+	public void setId(int id) {
 		this.id = id;
 	}
 

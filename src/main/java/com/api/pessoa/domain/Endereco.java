@@ -3,12 +3,13 @@ package com.api.pessoa.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Endereco implements Serializable{
@@ -16,8 +17,8 @@ public class Endereco implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 	private String logradouro;
 	private String cep;
 	private String numero;
@@ -32,7 +33,7 @@ public class Endereco implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Endereco(int id, String logradouro, String cep, String numero, String cidade, Pessoa pessoa) {
+	public Endereco(Integer id, String logradouro, String cep, String numero, String cidade, Pessoa pessoa) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
@@ -42,11 +43,11 @@ public class Endereco implements Serializable{
 		this.pessoa = pessoa;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-
-	public void setId(int id) {
+	
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
