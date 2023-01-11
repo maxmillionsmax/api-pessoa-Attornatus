@@ -21,7 +21,7 @@ public class Pessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -32,7 +32,6 @@ public class Pessoa implements Serializable{
 
 	public Pessoa() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Pessoa(int id, String nome, LocalDate dataNascimento) {

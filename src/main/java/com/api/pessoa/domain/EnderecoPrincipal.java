@@ -8,78 +8,44 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 
 @Entity
-public class Endereco implements Serializable{
+public class EnderecoPrincipal implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String logradouro;
-	private String cep;
-	private String numero;
-	private String cidade;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;
-
-	public Endereco() {
+	
+	@OneToOne
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
+	
+	
+	public EnderecoPrincipal() {
 		super();
 	}
-
-	public Endereco(Integer id, String logradouro, String cep, String numero, String cidade, Pessoa pessoa) {
+		
+	public EnderecoPrincipal(Integer id, Pessoa pessoa, Endereco endereco) {
 		super();
 		this.id = id;
-		this.logradouro = logradouro;
-		this.cep = cep;
-		this.numero = numero;
-		this.cidade = cidade;
 		this.pessoa = pessoa;
+		this.endereco = endereco;
 	}
 
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getLogradouro() {
-		return logradouro;
-	}
-
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
 	}
 
 	public Pessoa getPessoa() {
@@ -90,11 +56,19 @@ public class Endereco implements Serializable{
 		this.pessoa = pessoa;
 	}
 
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -103,7 +77,7 @@ public class Endereco implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Endereco other = (Endereco) obj;
+		EnderecoPrincipal other = (EnderecoPrincipal) obj;
 		return id == other.id;
 	}
 	
