@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.pessoa.domain.Pessoa;
+import com.api.pessoa.dtos.PessoaDto;
 import com.api.pessoa.exceptions.ObjectNotFoundException;
 import com.api.pessoa.repositories.PessoaRepository;
 
@@ -28,5 +29,12 @@ public class PessoaService {
 	
 	public Pessoa create(Pessoa pessoa) {
 		return pessoaRepository.save(pessoa);
+	}
+
+	public Pessoa update(Integer id, PessoaDto pessoaDto) {
+		Pessoa obj = findById(id);
+		obj.setNome(pessoaDto.getNome());
+		obj.setDataNascimento(pessoaDto.getDataNascimento());
+		return pessoaRepository.save(obj);
 	}
 }
