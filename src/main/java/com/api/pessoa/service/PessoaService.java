@@ -1,5 +1,6 @@
 package com.api.pessoa.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class PessoaService {
 	public Pessoa findById(Integer id) {
 		Optional<Pessoa> obj = pessoaRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id:" +id+", Pessoa: "+Pessoa.class.getName()));
+				"Objeto não encontrado! Id:" +id+", Tipo: "+Pessoa.class.getName()));
+	}
+	
+	public List<Pessoa> findAll(){
+		return pessoaRepository.findAll();
 	}
 }
