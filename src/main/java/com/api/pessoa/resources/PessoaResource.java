@@ -40,7 +40,6 @@ public class PessoaResource {
 		List<PessoaDto> pessoaDtos = new ArrayList<PessoaDto>();
 		pessoaDtos = pessoaService.findAll().stream().map(pessoa -> new PessoaDto(pessoa)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(pessoaDtos);
-		
 	}
 	
 	@PostMapping

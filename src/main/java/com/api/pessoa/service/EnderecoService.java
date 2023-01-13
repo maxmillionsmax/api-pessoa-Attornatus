@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.api.pessoa.domain.Endereco;
@@ -52,7 +53,11 @@ public class EnderecoService {
 
 	public void delete(Integer id) {
 		Endereco endereco = findById(id);
-		enderecoRepository.delete(endereco);
+		try {
+			enderecoRepository.delete(endereco);
+		} catch (DataIntegrityViolationException e) {
+			throw new com.api.pessoa.service.exceptions.DataIntegrityViolationException("Endereço não pode ser deletado! Este é o endereço principal.");
+		}
 		
 	}
 }
