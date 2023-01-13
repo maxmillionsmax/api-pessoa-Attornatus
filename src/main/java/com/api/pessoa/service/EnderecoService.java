@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.pessoa.domain.Endereco;
+import com.api.pessoa.domain.Pessoa;
 import com.api.pessoa.repositories.EnderecoRepository;
 import com.api.pessoa.service.exceptions.ObjectNotFoundException;
 
@@ -40,5 +41,12 @@ public class EnderecoService {
 		newEndereco.setCidade(endereco.getCidade());
 		newEndereco.setCep(endereco.getCep());
 		newEndereco.setNumero(endereco.getNumero());
+	}
+
+	public Endereco create(Integer id_pessoa, Endereco endereco) {
+		endereco.setId(null);
+		Pessoa pessoa = pessoaService.findById(id_pessoa);
+		endereco.setPessoa(pessoa);
+		return enderecoRepository.save(endereco);
 	}
 }

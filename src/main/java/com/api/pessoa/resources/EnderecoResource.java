@@ -1,5 +1,6 @@
 package com.api.pessoa.resources;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,11 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.api.pessoa.domain.Endereco;
 import com.api.pessoa.dtos.EnderecoDto;
@@ -53,4 +56,13 @@ public class EnderecoResource {
 		Endereco newEndereco = enderecoService.update(id, endereco);
 		return ResponseEntity.ok().body(newEndereco);
 	}
+	
+	@PostMapping
+	public ResponseEntity<Endereco> create(@RequestParam(value = "pessoa", defaultValue = "0") Integer id_pessoa,
+			@RequestBody Endereco endereco){
+		Endereco newEndereco = enderecoService.create(id_pessoa, endereco);
+		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/endereco/{id}").buildAndExpand(newEndereco.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
+	
 }
