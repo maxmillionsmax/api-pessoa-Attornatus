@@ -49,4 +49,10 @@ public class EnderecoService {
 		endereco.setPessoa(pessoa);
 		return enderecoRepository.save(endereco);
 	}
+
+	public void delete(Integer id) {
+		Endereco endereco = findById(id);
+		enderecoRepository.delete(endereco);
+		
+	}
 }
