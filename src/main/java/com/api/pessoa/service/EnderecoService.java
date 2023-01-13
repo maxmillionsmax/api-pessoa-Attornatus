@@ -29,4 +29,16 @@ public class EnderecoService {
 		return enderecoRepository.findAllByPessoa(id_pessoa);
 	}
 
+	public Endereco update(Integer id, Endereco endereco) {
+		Endereco newEndereco = findById(id);
+		updateData(newEndereco, endereco);
+		return enderecoRepository.save(newEndereco);
+	}
+
+	private void updateData(Endereco newEndereco, Endereco endereco) {
+		newEndereco.setLogradouro(endereco.getLogradouro());
+		newEndereco.setCidade(endereco.getCidade());
+		newEndereco.setCep(endereco.getCep());
+		newEndereco.setNumero(endereco.getNumero());
+	}
 }
