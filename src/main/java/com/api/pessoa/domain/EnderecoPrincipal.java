@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 
 @Entity
 public class EnderecoPrincipal implements Serializable{
@@ -21,10 +24,12 @@ public class EnderecoPrincipal implements Serializable{
 	private Integer id;
 	
 	@OneToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;
 	
-	@OneToOne
+	@OneToOne(orphanRemoval = true)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 	
