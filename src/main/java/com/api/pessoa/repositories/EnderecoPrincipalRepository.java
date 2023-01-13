@@ -7,5 +7,5 @@ import com.api.pessoa.domain.EnderecoPrincipal;
 
 @Repository
 public interface EnderecoPrincipalRepository extends JpaRepository<EnderecoPrincipal, Integer>{
-
+	
 }

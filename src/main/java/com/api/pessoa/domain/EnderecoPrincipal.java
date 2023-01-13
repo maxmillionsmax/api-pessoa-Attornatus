@@ -28,7 +28,7 @@ public class EnderecoPrincipal implements Serializable{
 	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;
 	
-	@OneToOne(orphanRemoval = true)
+	@OneToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
