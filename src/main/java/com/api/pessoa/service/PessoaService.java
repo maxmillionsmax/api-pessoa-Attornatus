@@ -37,4 +37,10 @@ public class PessoaService {
 		obj.setDataNascimento(pessoaDto.getDataNascimento());
 		return pessoaRepository.save(obj);
 	}
+
+	public void delete(Integer id) {
+		findById(id);
+		pessoaRepository.deleteById(id);
+		
+	}
 }
