@@ -14,8 +14,6 @@ import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 @Entity
 public class Pessoa implements Serializable{
@@ -29,7 +27,6 @@ public class Pessoa implements Serializable{
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "pessoa")
 	private List<Endereco> enderecos = new ArrayList<>();
 

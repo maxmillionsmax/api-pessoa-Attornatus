@@ -1,5 +1,6 @@
 package com.api.pessoa.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,9 @@ public class EnderecoPrincipalService {
 		Optional<EnderecoPrincipal> endereco = enderecoPrincipalRepository.findById(id);
 		return endereco.orElse(null);
 		
+	}
+	
+	public List<EnderecoPrincipal> findAll(){
+		return enderecoPrincipalRepository.findAll();
 	}
 }
