@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.api.pessoa.domain.Pessoa;
 import com.api.pessoa.dtos.PessoaDto;
-import com.api.pessoa.exceptions.ObjectNotFoundException;
 import com.api.pessoa.repositories.PessoaRepository;
+import com.api.pessoa.service.exceptions.ObjectNotFoundException;
 
 @Service
 public class PessoaService {
@@ -40,7 +41,12 @@ public class PessoaService {
 
 	public void delete(Integer id) {
 		findById(id);
-		pessoaRepository.deleteById(id);
+		try {
+			pessoaRepository.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new com.api.pessoa.service.exceptions.DataIntegrityViolationException(
+					"Pessoa não pode ser deletada! Pois possui enderços associados.");
+		}
 		
 	}
 }

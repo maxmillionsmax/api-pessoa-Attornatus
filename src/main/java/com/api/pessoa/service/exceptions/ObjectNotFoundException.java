@@ -1,4 +1,4 @@
-package com.api.pessoa.exceptions;
+package com.api.pessoa.service.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException{
 
