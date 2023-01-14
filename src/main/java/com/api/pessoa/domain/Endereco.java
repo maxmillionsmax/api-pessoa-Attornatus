@@ -12,10 +12,9 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
-public class Endereco implements Serializable{
-	
+public class Endereco implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -25,7 +24,8 @@ public class Endereco implements Serializable{
 	private String cep;
 	private String numero;
 	private String cidade;
-	
+	private boolean enderecoPrincipal;
+
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "pessoa_id")
@@ -35,7 +35,8 @@ public class Endereco implements Serializable{
 		super();
 	}
 
-	public Endereco(Integer id, String logradouro, String cep, String numero, String cidade, Pessoa pessoa) {
+	public Endereco(Integer id, String logradouro, String cep, String numero, String cidade,
+			Pessoa pessoa, boolean enderecoPrincipal) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
@@ -43,12 +44,14 @@ public class Endereco implements Serializable{
 		this.numero = numero;
 		this.cidade = cidade;
 		this.pessoa = pessoa;
+		this.enderecoPrincipal = enderecoPrincipal;
 	}
+	
 
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -85,6 +88,14 @@ public class Endereco implements Serializable{
 		this.cidade = cidade;
 	}
 
+	public boolean isEnderecoPrincipal() {
+		return enderecoPrincipal;
+	}
+
+	public void setEnderecoPrincipal(boolean enderecoPrincipal) {
+		this.enderecoPrincipal = enderecoPrincipal;
+	}
+
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
@@ -92,7 +103,7 @@ public class Endereco implements Serializable{
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -109,5 +120,5 @@ public class Endereco implements Serializable{
 		Endereco other = (Endereco) obj;
 		return id == other.id;
 	}
-	
+
 }

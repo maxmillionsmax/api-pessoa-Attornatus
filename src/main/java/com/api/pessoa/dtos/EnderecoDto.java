@@ -13,6 +13,7 @@ public class EnderecoDto implements Serializable {
 	private String cep;
 	private String numero;
 	private String cidade;
+	private boolean principal;
 
 	public EnderecoDto() {
 		super();
@@ -26,6 +27,7 @@ public class EnderecoDto implements Serializable {
 		this.cep = endereco.getCep();
 		this.numero = endereco.getNumero();
 		this.cidade = endereco.getCidade();
+		this.principal = endereco.isEnderecoPrincipal();
 	}
 
 	public Integer getId() {
@@ -67,5 +69,15 @@ public class EnderecoDto implements Serializable {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+
+	public boolean isPrincipal() {
+		return principal;
+	}
+
+	public void setPrincipal(boolean principal) {
+		this.principal = principal;
+	}
+	
+	
 
 }
