@@ -39,6 +39,12 @@ version="1.1" width="16" height="16" aria-hidden="true">
 <li>
 <p dir="auto"><strong>Validation</strong></p>
 </li>
+<li>
+<p dir="auto"><strong>H2</strong></p>
+</li>
+<li>
+<p dir="auto"><strong>MySql</strong></p>
+</li>
 </ul>
 </li>
 <li>Git/GitHub para versionamento do código</li>
