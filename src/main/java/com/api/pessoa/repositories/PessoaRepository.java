@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.api.pessoa.domain.Pessoa;
 
 @Repository
-public interface PessoaRepository extends JpaRepository<Pessoa, Integer>{
+public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
 
 }

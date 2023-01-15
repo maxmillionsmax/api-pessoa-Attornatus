@@ -5,7 +5,7 @@ public class StandardError {
 	private Long timestamp;
 	private Integer status;
 	private String error;
-	
+
 	public StandardError() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -41,6 +41,5 @@ public class StandardError {
 	public void setError(String error) {
 		this.error = error;
 	}
-	
-	
+
 }

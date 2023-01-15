@@ -7,15 +7,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.api.pessoa.domain.Pessoa;
 
-public class PessoaDto implements Serializable{
-		
+public class PessoaDto implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private String nome;
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
-	
+
 	public PessoaDto() {
 		super();
 	}
@@ -50,6 +50,5 @@ public class PessoaDto implements Serializable{
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	
-	
+
 }

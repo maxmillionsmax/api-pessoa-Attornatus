@@ -14,7 +14,7 @@ import com.api.pessoa.service.exceptions.ObjectNotFoundException;
 
 @Service
 public class EnderecoService {
-	
+
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 	@Autowired
@@ -23,7 +23,7 @@ public class EnderecoService {
 	public Endereco findById(Integer id) {
 		Optional<Endereco> obj = enderecoRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id:" +id+", Tipo: "+Endereco.class.getName()));
+				"Objeto não encontrado! Id:" + id + ", Tipo: " + Endereco.class.getName()));
 	}
 
 	public List<Endereco> findAll(Integer id_pessoa) {
@@ -36,12 +36,22 @@ public class EnderecoService {
 		updateData(newEndereco, endereco);
 		return enderecoRepository.save(newEndereco);
 	}
+	
+	public Endereco updatePrincipal(Integer id, Endereco endereco) {
+		Endereco newEndereco = findById(id);
+		updateIsPrincipal(newEndereco, endereco);
+		return enderecoRepository.save(newEndereco);
+	}
 
 	private void updateData(Endereco newEndereco, Endereco endereco) {
 		newEndereco.setLogradouro(endereco.getLogradouro());
 		newEndereco.setCidade(endereco.getCidade());
 		newEndereco.setCep(endereco.getCep());
 		newEndereco.setNumero(endereco.getNumero());
+		newEndereco.setEnderecoPrincipal(endereco.isEnderecoPrincipal());
+	}
+	private void updateIsPrincipal(Endereco newEndereco, Endereco endereco) {
+		newEndereco.setEnderecoPrincipal(endereco.isEnderecoPrincipal());
 	}
 
 	public Endereco create(Integer id_pessoa, Endereco endereco) {
@@ -56,8 +66,9 @@ public class EnderecoService {
 		try {
 			enderecoRepository.delete(endereco);
 		} catch (DataIntegrityViolationException e) {
-			throw new com.api.pessoa.service.exceptions.DataIntegrityViolationException("Endereço não pode ser deletado! Este é o endereço principal.");
+			throw new com.api.pessoa.service.exceptions.DataIntegrityViolationException(
+					"Endereço não pode ser deletado! Este é o endereço principal.");
 		}
-		
+
 	}
 }

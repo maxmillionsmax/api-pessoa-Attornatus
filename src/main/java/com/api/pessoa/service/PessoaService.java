@@ -14,20 +14,20 @@ import com.api.pessoa.service.exceptions.ObjectNotFoundException;
 
 @Service
 public class PessoaService {
-	
+
 	@Autowired
 	private PessoaRepository pessoaRepository;
 
 	public Pessoa findById(Integer id) {
 		Optional<Pessoa> obj = pessoaRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Objeto não encontrado! Id:" +id+", Tipo: "+Pessoa.class.getName()));
+				"Objeto não encontrado! Id:" + id + ", Tipo: " + Pessoa.class.getName()));
 	}
-	
-	public List<Pessoa> findAll(){
+
+	public List<Pessoa> findAll() {
 		return pessoaRepository.findAll();
 	}
-	
+
 	public Pessoa create(Pessoa pessoa) {
 		return pessoaRepository.save(pessoa);
 	}
@@ -47,6 +47,6 @@ public class PessoaService {
 			throw new com.api.pessoa.service.exceptions.DataIntegrityViolationException(
 					"Pessoa não pode ser deletada! Pois possui enderços associados.");
 		}
-		
+
 	}
 }

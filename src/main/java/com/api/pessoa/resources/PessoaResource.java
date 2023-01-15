@@ -21,42 +21,41 @@ import com.api.pessoa.domain.Pessoa;
 import com.api.pessoa.dtos.PessoaDto;
 import com.api.pessoa.service.PessoaService;
 
-
 @RestController
 @RequestMapping(value = "/pessoa")
 public class PessoaResource {
-	
+
 	@Autowired
 	private PessoaService pessoaService;
-	
+
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Pessoa> findByid(@PathVariable Integer id){
+	public ResponseEntity<Pessoa> findByid(@PathVariable Integer id) {
 		Pessoa pessoa = pessoaService.findById(id);
 		return ResponseEntity.ok().body(pessoa);
 	}
-	
+
 	@GetMapping
-	public ResponseEntity<List<PessoaDto>> findAll(){
+	public ResponseEntity<List<PessoaDto>> findAll() {
 		List<PessoaDto> pessoaDtos = new ArrayList<PessoaDto>();
 		pessoaDtos = pessoaService.findAll().stream().map(pessoa -> new PessoaDto(pessoa)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(pessoaDtos);
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<Pessoa> create(@RequestBody Pessoa pessoa){
+	public ResponseEntity<Pessoa> create(@RequestBody Pessoa pessoa) {
 		pessoa = pessoaService.create(pessoa);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pessoa.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	
+
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<PessoaDto> update(@PathVariable Integer id, @RequestBody PessoaDto pessoaDto){
+	public ResponseEntity<PessoaDto> update(@PathVariable Integer id, @RequestBody PessoaDto pessoaDto) {
 		Pessoa newPessoa = pessoaService.update(id, pessoaDto);
 		return ResponseEntity.ok().body(new PessoaDto(newPessoa));
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Integer id){
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		pessoaService.delete(id);
 		return ResponseEntity.noContent().build();
 	}

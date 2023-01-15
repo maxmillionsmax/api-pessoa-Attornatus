@@ -35,8 +35,8 @@ public class Endereco implements Serializable {
 		super();
 	}
 
-	public Endereco(Integer id, String logradouro, String cep, String numero, String cidade,
-			Pessoa pessoa, boolean enderecoPrincipal) {
+	public Endereco(Integer id, String logradouro, String cep, String numero, String cidade, Pessoa pessoa,
+			boolean enderecoPrincipal) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
@@ -46,7 +46,6 @@ public class Endereco implements Serializable {
 		this.pessoa = pessoa;
 		this.enderecoPrincipal = enderecoPrincipal;
 	}
-	
 
 	public Integer getId() {
 		return id;
@@ -103,7 +102,7 @@ public class Endereco implements Serializable {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
